@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>
+        <%= title %>
+    </title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="/stylesheets/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="/stylesheets/bootstrap2-toggle.css" rel="stylesheet">
+    <link href="/stylesheets/theme.css" rel="stylesheet">
+
+</head>
+
+<body role="document">
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Bootstrap theme</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li class="dropdown-header">Nav header</li>
+                            <li><a href="#">Separated link</a></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <div class="container theme-showcase" role="main">
+
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <h1>Arduino example</h1>
+            <p>This is a template showcasing the optional theme stylesheet included in Bootstrap. Use it as a starting point to create something more unique by building on or modifying it.</p>
+        </div>
+
+        <div class="page-header">
+            <h1>LEDs</h1>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"> NO.1</h3>
+                    </div>
+                    <div class="panel-body">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="led1" name="led1" data-toggle="toggle" data-width="100" data-height="75">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-sm-4 -->
+            <div class="col-sm-4">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"> NO.2</h3>
+                    </div>
+                    <div class="panel-body">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="led2" name="led2" data-toggle="toggle" data-width="100" data-height="75">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-sm-4 -->
+            <div class="col-sm-4">
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"> NO.3</h3>
+                    </div>
+                    <div class="panel-body">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="led3" name="led3" data-toggle="toggle" data-width="100" data-height="75">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col-sm-4 -->
+        </div>
+
+    </div>
+    <!-- /container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+	<script src="/socket.io/socket.io.js"></script>
+    <script src="/javascripts/jquery.js"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <script src="/javascripts/bootstrap2-toggle.js"></script>
+	<script>
+		var socket = io('/');
+		$(document).ready(function () {
+            $('#led1').change(function () {
+				console.log($('#led1').is(":checked"));
+				if($('#led1').is(":checked")) {
+					socket.emit('led1', 'on');
+				} else {
+					socket.emit('led1', 'off');
+				}
+			});
+			$('#led2').change(function () {
+				console.log($('#led2').is(":checked"));
+				if($('#led2').is(":checked")) {
+					socket.emit('led2', 'on');
+				} else {
+					socket.emit('led2', 'off');
+				}
+			});
+			$('#led3').change(function () {
+				console.log($('#led3').is(":checked"));
+				if($('#led3').is(":checked")) {
+					socket.emit('led3', 'on');
+				} else {
+					socket.emit('led3', 'off');
+				}
+			});
+        });
+	</script>
+</body>
+
+</html>
